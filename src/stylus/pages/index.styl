@@ -1,0 +1,78 @@
+@import "../base"
+
+.header
+  height 85px
+  line-height 85px
+  background #1e8af1
+  background linear-gradient(#1e8af1 0%, #38bbf0 100%)
+  color #fff
+  font-size 20px
+  text-align center
+
+.header-left
+  float left
+  padding-left 30px
+  width 70px
+  i
+    font-size 60px !important
+.header-right
+  float left
+  padding-left 10px
+  span
+    font-size 24px !important
+
+.body
+  position absolute
+  width 100%
+  top 85px
+
+.title
+  padding 5px 10px
+  font-size 12px
+
+.divider
+  display table
+  white-space nowrap
+  height auto
+  overflow hidden
+  line-height 1
+  text-align center
+  color #bbbbbb
+  &:before
+    background-position right 1em top 50%
+  &:after
+    background-position left 1em top 50%
+  &:after,&:before
+    content ""
+    display table-cell
+    position relative
+    top 50%
+    width 50%
+    background-repeat no-repeat
+    background-image url('~assets/line.png')
+
+.itmes
+  margin 0 10px
+
+.item
+  margin 0 10px
+  background-color #fff
+  border 1px solid #dbdbdb
+  border-radius 5px
+  font-size 12px
+  &:active
+    background-color #fff * 0.9
+  &:hover
+    background-color #fff * 0.9
+  &-top
+    padding 12px 10px 3px
+    color #484848
+  &-bottom
+    padding 0 10px
+    height 24px
+    line-height 24px
+    color #bbbbbb
+    &-left
+      float left
+    &-right
+      float right
