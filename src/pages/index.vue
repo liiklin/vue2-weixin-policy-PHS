@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-	.header
+	.header(flex="dir:left main:center")
 		.header-left
 			i.iconfont.icon-psd-header
 		.header-right
@@ -8,9 +8,9 @@ div
 	.body
 		div(v-for="article in articleList")
 			.title
-				p.divider(v-text="article.name")
-			.items(v-for="item in article.items")
-				.item(@click="open(item.id)")
+				p.divider(v-text="article.name" flex="dir:left main:center")
+			.items
+				.item(@click="open(item.id)" v-for="item in article.items")
 					.item-top
 						span(v-text="item.name")
 					.item-bottom

@@ -8,6 +8,7 @@ import * as filter from './filter' //自定义过滤器
 
 import 'vue2-animate/dist/vue2-animate.min.css' // animate
 import 'normalize.css' //重置浏览器默认样式
+import 'flex.css' //flex.css
 import './iconfont/iconfont.css' //web字体图标
 
 sync(store, router)
