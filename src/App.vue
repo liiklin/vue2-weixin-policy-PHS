@@ -1,7 +1,6 @@
 <template lang="pug">
   #app
-    transition
-      router-view
+    router-view
 </template>
 
 <script>
