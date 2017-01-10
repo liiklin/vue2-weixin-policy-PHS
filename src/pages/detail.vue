@@ -1,5 +1,10 @@
 <template lang="pug">
-.conten(v-html="article.content")
+#detail
+  .header
+    img(src="~assets/detail-header.png")
+  .content(v-html="article.content")
+  .footer
+    img(src="~assets/detail-footer.png")
 </template>
 
 <script>
@@ -55,6 +60,9 @@ export default {
 
     //修改title
     this.setDocumentTitle(this.article.name)
+  },
+  beforeMount(){
+    document.body.style.background = '#fff'
   }
 }
 </script>

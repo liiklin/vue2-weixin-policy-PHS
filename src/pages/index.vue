@@ -54,6 +54,9 @@ export default {
   async mounted() {
     await fetchArticleList(this.$store)
     this.articleList = this.$store.getters.getArticleList
+  },
+  beforeMount(){
+    document.body.style.background = '#f7f7f7'
   }
 }
 </script>

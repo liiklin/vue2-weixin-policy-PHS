@@ -38,6 +38,7 @@ let setDocumentTitle = function (title) {
 }
 
 router.beforeEach((to, from, next) => {
+  document.body.style.background = '#fff'
   typeof to.meta.title !== undefined && setDocumentTitle(to.meta.title)
   next()
 })
