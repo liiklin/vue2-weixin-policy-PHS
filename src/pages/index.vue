@@ -10,7 +10,7 @@ div
 			.title
 				p.divider(v-text="article.name" flex="dir:left main:center")
 			.items
-				.item(@click="open(item.id)" v-for="item in article.items")
+				.item(@click="open(item.id,item.name)" v-for="item in article.items")
 					.item-top
 						span(v-text="item.name")
 					.item-bottom
@@ -42,7 +42,9 @@ export default {
     ])
   },
   methods: {
-    open(id) {
+    open(id,title) {
+			//提交统计
+			window._czc.push('_trackEvent','政策小灵通','打开',`打开文章${title}`)
       this.$router.push({
         name: 'detail',
         query: {
