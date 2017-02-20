@@ -7,4 +7,7 @@ export default {
   [types.SET_ARTICLE](state, {article}) {
     state.article = article
   },
+  [types.SET_CURRENT_ARTICLE_LIST](state, {currentArticleList}) {
+    state.currentArticleList = currentArticleList
+  }
 }

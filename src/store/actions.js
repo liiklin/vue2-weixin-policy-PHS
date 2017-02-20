@@ -26,4 +26,13 @@ export default {
         })
       })
   },
+  setCurrentArticle({
+    commit
+  },{
+    currentArticleList
+  }){
+    return commit(types.SET_CURRENT_ARTICLE_LIST,{
+      currentArticleList
+    })
+  }
 }

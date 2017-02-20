@@ -6,18 +6,10 @@ div
 		.header-right
 			span 国家知识产权政策
 	.body
-		div(v-for="article in articleList")
-			.title
-				p.divider(v-text="article.name" flex="dir:left main:center")
-			.items
-				.item(@click="open(item.id,item.name)" v-for="item in article.items")
-					.item-top
-						span(v-text="item.name")
-					.item-bottom
-						.item-bottom-left
-							span(v-text="'发文部门:'+item.sendDepartment")
-						.item-bottom-right
-							span(v-text="item.sendDate")
+		div(v-for="item in articleItem")
+			.items(@click="open(item.id,item.name)")
+				.item
+					span(v-text="item.name")
 </template>
 
 <script>
@@ -26,6 +18,8 @@ import {
   mapActions
 } from 'vuex'
 
+import _ from 'underscore'
+
 async function fetchArticleList(store) {
   return store.dispatch('getArticleList')
 }
@@ -33,7 +27,8 @@ async function fetchArticleList(store) {
 export default {
   data() {
     return {
-      articleList: [],
+      articleItem: [],
+			articleList:[]
     }
   },
   computed: {
@@ -42,22 +37,34 @@ export default {
     ])
   },
   methods: {
-    open(id,title) {
-			//提交统计
-			window._czc.push('_trackEvent','政策小灵通','打开',`打开文章${title}`)
+    open(id, title) {
+      //提交统计
+      window._czc.push('_trackEvent', '政策小灵通', '打开', `打开列表${title}`)
       this.$router.push({
-        name: 'detail',
+        name: 'detailList',
         query: {
           id
         }
       })
+			let currentArticleList = _.filter(this.articleList,item=>{
+				return item.id == id
+			})
+			this.$store.dispatch('setCurrentArticle',{
+				currentArticleList
+			})
     }
   },
   async mounted() {
     await fetchArticleList(this.$store)
     this.articleList = this.$store.getters.getArticleList
+    this.articleItem = _.map(this.articleList, item => {
+      return {
+        id: item.id,
+        name: item.name
+      }
+    })
   },
-  beforeMount(){
+  beforeMount() {
     document.body.style.background = '#f7f7f7'
   }
 }
