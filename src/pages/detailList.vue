@@ -26,6 +26,10 @@ import {
   mapActions
 } from 'vuex'
 
+import {
+	wxShareConfig
+} from '../util/util'
+
 import _ from 'underscore'
 import queryString from 'query-string'
 
@@ -54,6 +58,21 @@ export default {
           id
         }
       })
+    },
+    setDocumentTitle(title) {
+        document.title = title;
+        let ua = navigator.userAgent;
+        if (/\bMicroMessenger\/([\d\.]+)/.test(ua) && /ip(hone|od|ad)/i.test(ua)) {
+            var i = document.createElement('iframe');
+            i.src = '/favicon.ico';
+            i.style.display = 'none';
+            i.onload = function () {
+                setTimeout(function () {
+                    i.remove();
+                }, 9);
+            };
+            document.body.appendChild(i);
+        }
     }
   },
   async mounted() {
@@ -67,8 +86,21 @@ export default {
       })
     } else {
       this.articleList = this.$store.getters.getCurrentArticleList
-
     }
+    //修改title
+    this.setDocumentTitle(this.articleList[0].name)
+
+    //分享设置
+    let title = `${this.articleList[0].name}`,
+      desc = `${this.articleList[0].name}`,
+      link = `weixin.7ipr.com/app/weixin/policy/index.html#/detailList?id=${this.articleList[0].id}`,
+      imgUrl = ''
+    wxShareConfig({
+        title,
+        desc,
+        link,
+        imgUrl
+      })
   },
   beforeMount() {
     document.body.style.background = '#f7f7f7'

@@ -13,6 +13,10 @@ import {
   mapActions
 } from 'vuex'
 
+import {
+	wxShareConfig
+} from '../util/util'
+
 async function fetchArticle(store,id) {
   return store.dispatch('getArticle',{id})
 }
@@ -60,6 +64,18 @@ export default {
 
     //修改title
     this.setDocumentTitle(this.article.name)
+
+    //分享设置
+    let title = `${this.article.name}`,
+      desc = `${this.article.name}`,
+      link = `weixin.7ipr.com/app/weixin/policy/index.html#/detail?id=${this.article.id}`,
+      imgUrl = ''
+    wxShareConfig({
+        title,
+        desc,
+        link,
+        imgUrl
+      })
   },
   beforeMount(){
     document.body.style.background = '#fff'
